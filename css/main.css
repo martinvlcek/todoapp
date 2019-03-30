@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 100%;
+    width: 100%;
+    height: 100%
+}
+
+#todoapp {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+input.title-input {
+    width: 70%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 15px;
+    background-color: #434353;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.animacia {
+    animation-duration: 1s;
+    animation-name: testik;
+}
+
+@keyframes testik {
+    0% {
+        left: -200px;
+        opacity: 0;
+    }
+    100% {
+        left: 0px;
+        opaity: 1;
+    }
+}
+
