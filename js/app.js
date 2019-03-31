@@ -1,21 +1,29 @@
 'use strict';
 
-let todoTitle = document.querySelector('.title-input');
-let todoList = document.querySelector('.todo-list');
-let list = document.createElement('li');
+var todoTitle = document.querySelector('.title-input');
+var todoList = document.querySelector('.todo-list');
+
+var createNewTask = function(task) {
+    var listItem = document.createElement('li');
+    var textItem = document.createElement('span');
+
+    textItem.innerText = task;
+    listItem.appendChild(textItem);
+
+    return listItem;
+};
+
+var addNewTask = function() {
+    var listItem = createNewTask(todoTitle.value);
+    todoList.appendChild(listItem);
+    listItem.classList.add('animacia');
+    todoTitle.value = '';
+}
 
 todoTitle.addEventListener('keyup', function(event) {
-    if (todoTitle) {
-
-        if (event.keyCode === 13) {
-            todoList.appendChild(list);
-            list.innerHTML = todoTitle.value;
-            list.classList.add('animacia');
-            todoTitle.value = '';
-        }
+    if (event.keyCode === 13) {
+        addNewTask();
     }
-    
-    
 })
 
 
