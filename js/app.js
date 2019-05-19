@@ -21,7 +21,7 @@ var addNewTask = function() {
 }
 
 todoTitle.addEventListener('keyup', function(event) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && todoTitle.value.length >= 1) {
         addNewTask();
     }
 })
