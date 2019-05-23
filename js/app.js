@@ -24,14 +24,34 @@ var createNewTask = function(task) {
     var listItem = document.createElement('li');
     var textItem = document.createElement('div');
     var dateInfo = document.createElement('span');
+    var icons = document.createElement('span');
     
+    var iconsClass = [
+        '<i class="fas fa-tag"></i>',
+        '<i class="fas fa-palette"></i>',
+        '<i class="fas fa-edit"></i>',
+        '<i class="fas fa-check-square"></i>'
+    ]
+    
+    iconsClass.forEach(function(icon) {
+    
+        var iconParent = document.createElement('li');
+        iconParent.className = 'icon-item';
+        iconParent.innerHTML = icon;
+        icons.appendChild(iconParent);
+        console.log(iconParent);
 
+    });
+    
     dateInfo.innerText = formatDate(new Date());
     dateInfo.className = 'task-date';
     textItem.className = 'list-content';
+    icons.className = 'action-icons';
     textItem.innerText = task;
+    listItem.className = 'list-item';
     listItem.appendChild(textItem);
     listItem.appendChild(dateInfo);
+    listItem.appendChild(icons);
 
     return listItem;
 };
@@ -39,7 +59,6 @@ var createNewTask = function(task) {
 var addNewTask = function() {
     var listItem = createNewTask(todoTitle.value);
     todoList.appendChild(listItem);
-    // listItem.classList.add('animacia');
     todoTitle.value = '';
 }
 
