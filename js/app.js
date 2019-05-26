@@ -31,7 +31,7 @@ function createNewTask(task) {
         '<i class="fas fa-palette"></i>',
         '<i class="fas fa-edit"></i>',
         '<i class="fas fa-check-square"></i>',
-        '<i class="fas fa-times-circle"></i>'
+        '<i class="fas fa-times-circle delete-task"></i>'
     ]
     
     iconsClass.forEach(function(icon) {
@@ -40,7 +40,7 @@ function createNewTask(task) {
         iconParent.className = 'icon-item';
         iconParent.innerHTML = icon;
         icons.appendChild(iconParent);
-
+        
     });
     
     dateInfo.innerText = formatDate(new Date());
@@ -54,12 +54,21 @@ function createNewTask(task) {
     listItem.appendChild(dateInfo);
 
     return listItem;
+
 };
 
 function addNewTask() {
     var listItem = createNewTask(todoTitle.value);
     todoList.appendChild(listItem);
     todoTitle.value = '';
+    
+    var deleteTask = document.querySelectorAll('.delete-task');
+    
+    deleteTask.forEach(function (icon) {
+        icon.addEventListener("click", function() {
+			this.closest("li.list-item").classList.add("hidden");     
+        });
+    });    
 };
 
 todoTitle.addEventListener('keyup', function (event) {
@@ -67,7 +76,6 @@ todoTitle.addEventListener('keyup', function (event) {
         addNewTask();
     }
 });
-
 
 
 
