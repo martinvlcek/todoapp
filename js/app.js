@@ -20,17 +20,18 @@ function formatDate(date) {
     return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + hours + ':' + mins;
 }
 
-var createNewTask = function(task) {
+function createNewTask(task) {
     var listItem = document.createElement('li');
     var textItem = document.createElement('div');
     var dateInfo = document.createElement('span');
-    var icons = document.createElement('span');
+    var icons = document.createElement('div');
     
     var iconsClass = [
         '<i class="fas fa-tag"></i>',
         '<i class="fas fa-palette"></i>',
         '<i class="fas fa-edit"></i>',
-        '<i class="fas fa-check-square"></i>'
+        '<i class="fas fa-check-square"></i>',
+        '<i class="fas fa-times-circle"></i>'
     ]
     
     iconsClass.forEach(function(icon) {
@@ -39,7 +40,6 @@ var createNewTask = function(task) {
         iconParent.className = 'icon-item';
         iconParent.innerHTML = icon;
         icons.appendChild(iconParent);
-        console.log(iconParent);
 
     });
     
@@ -49,24 +49,26 @@ var createNewTask = function(task) {
     icons.className = 'action-icons';
     textItem.innerText = task;
     listItem.className = 'list-item';
+    textItem.appendChild(icons);
     listItem.appendChild(textItem);
     listItem.appendChild(dateInfo);
-    listItem.appendChild(icons);
 
     return listItem;
 };
 
-var addNewTask = function() {
+function addNewTask() {
     var listItem = createNewTask(todoTitle.value);
     todoList.appendChild(listItem);
     todoTitle.value = '';
-}
+};
 
-todoTitle.addEventListener('keyup', function(event) {
+todoTitle.addEventListener('keyup', function (event) {
     if (event.keyCode === 13 && todoTitle.value.length >= 1) {
         addNewTask();
     }
-})
+});
+
+
 
 
 

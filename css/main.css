@@ -1,5 +1,6 @@
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 body {
@@ -19,9 +20,9 @@ body {
     padding: 0px 20px;
 }
 
-input {
+input.title-input {
     -webkit-transition: all.5s;
-    -moz-transition: all.5s;
+    -webkit-transition: all .5s;
     transition: all .5s;
     display: block;
     width: 200px;
@@ -33,15 +34,15 @@ input {
     position: relative;
     top: 0;
     left: 50%;
-    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
     margin-bottom: 50px;
 }
 
-input:focus {
+input.title-input:focus {
     width: 100%;
     -webkit-box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
     border-bottom: none;
     border-radius: 15px;
     font-size: 16px;
@@ -52,10 +53,19 @@ input:focus {
 .todo-list {
     list-style-type: none;
     padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
 }
 
 .todo-list .list-item {
@@ -71,19 +81,22 @@ input:focus {
     position: relative;
     margin: 5px;
     -webkit-transition: all .25s;
-    -moz-transition: all .25s;
     transition: all .25s;
 }
 
 .todo-list .list-item:hover {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25);
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25);
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25);
+}
+
+.todo-list .list-item:hover .action-icons {
+    opacity: 1;
 }
 
 .todo-list .list-item .list-content {
-    min-height: 100px;
-    margin-bottom: 20px
+    position: relative;
+    min-height: 120px;
+    padding-bottom: 30px
 }
 
 .todo-list .list-item .task-date {
@@ -91,20 +104,27 @@ input:focus {
     display: block;
     text-align: right;
     padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.todo-list .list-item .action-icons {
-    text-align: right;
-    display: block;
-    padding-top: 10px;
     padding-bottom: 5px;
     border-top: 1px solid #e0e0e0;
 }
 
+.todo-list .list-item .action-icons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    margin-bottom: 10px;
+    opacity: 0;
+    -webkit-transition: all .25s;
+    transition: all .25s;
+}
+
 .todo-list .list-item .action-icons .icon-item {
     display: inline-block;
-    margin-left: 10px;
     cursor: pointer;
 }
