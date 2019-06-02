@@ -76,7 +76,7 @@ input.title-input:focus {
     border-radius: 10px;
     color: #202124;
     margin-bottom: 10px;
-    min-height: 100px;
+    /* min-heiglist-coht: 100px; */
     width: 200px;
     position: relative;
     margin: 5px;
@@ -95,8 +95,8 @@ input.title-input:focus {
 
 .todo-list .list-item .list-content {
     position: relative;
-    min-height: 120px;
-    padding-bottom: 30px
+    min-height: 150px;
+    padding: 5px;
 }
 
 .todo-list .list-item .task-date {
@@ -109,7 +109,7 @@ input.title-input:focus {
 }
 
 .todo-list .list-item .action-icons {
-    position: absolute;
+    position: relative;
     bottom: 0;
     right: 0;
     left: 0;
@@ -118,7 +118,10 @@ input.title-input:focus {
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
-    margin-bottom: 10px;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    margin: 10px 0;
     /* opacity: 0; */
     -webkit-transition: all .25s;
     transition: all .25s;
@@ -130,3 +133,7 @@ input.title-input:focus {
 }
 
 .hidden { display:none; }
+
+.fas.fa-check {
+    color: green;
+}

@@ -25,11 +25,12 @@ function createNewTask(task) {
     var textItem = document.createElement('div');
     var dateInfo = document.createElement('span');
     var icons = document.createElement('div');
+    // var saveEditedTask = document.createElement('span');
     
     var iconsClass = [
         '<i class="fas fa-tag"></i>',
         '<i class="fas fa-palette"></i>',
-        '<i class="fas fa-edit"></i>',
+        '<i class="fas fa-edit edit-task"></i>',
         '<i class="fas fa-check-square"></i>',
         '<i class="fas fa-times-circle delete-task"></i>'
     ]
@@ -49,8 +50,10 @@ function createNewTask(task) {
     icons.className = 'action-icons';
     textItem.innerText = task;
     listItem.className = 'list-item';
-    textItem.appendChild(icons);
+    // textItem.appendChild(icons);
     listItem.appendChild(textItem);
+    // listItem.appendChild(saveEditedTask);
+    listItem.appendChild(icons);
     listItem.appendChild(dateInfo);
 
     return listItem;
@@ -68,7 +71,27 @@ function addNewTask() {
         icon.addEventListener("click", function() {
 			this.closest("li.list-item").classList.add("hidden");     
         });
-    });    
+    });
+    
+    var editTask = document.querySelectorAll('.edit-task');
+    
+    
+    editTask.forEach(function(icon) {
+        icon.addEventListener("click", function () {
+            var thisParent = this.parentElement.parentElement.previousElementSibling;
+            thisParent.contentEditable = true;
+            thisParent.style.backgroundColor = "#efefef";
+            this.classList.remove("fas", "fa-edit", "edit-task");
+            this.classList.add("fas", "fa-check", "fa-2x");
+            
+            this.addEventListener("click", function () {
+                thisParent.contentEditable = false;
+                thisParent.style.backgroundColor = "#ffffff";
+                this.classList.remove("fas", "fa-check", "fa-2x");
+                this.classList.add("fas", "fa-edit", "edit-task");
+            })
+        })
+    })
 };
 
 todoTitle.addEventListener('keyup', function (event) {
@@ -76,7 +99,6 @@ todoTitle.addEventListener('keyup', function (event) {
         addNewTask();
     }
 });
-
 
 
 
