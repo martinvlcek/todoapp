@@ -29,7 +29,7 @@ function createNewTask(task) {
     
     var iconsClass = [
         '<i class="fas fa-tag"></i>',
-        '<i class="fas fa-palette"></i>',
+        '<i class="fas fa-palette change-bgcolor"></i>',
         '<i class="fas fa-edit edit-task"></i>',
         '<i class="fas fa-check-square"></i>',
         '<i class="fas fa-times-circle delete-task"></i>'
@@ -75,8 +75,7 @@ function addNewTask() {
     
     var editTask = document.querySelectorAll('.edit-task');
     
-    
-    editTask.forEach(function(icon) {
+    editTask.forEach(function (icon) {
         icon.addEventListener("click", function () {
             var thisParent = this.parentElement.parentElement.previousElementSibling;
             thisParent.contentEditable = true;
@@ -91,7 +90,66 @@ function addNewTask() {
                 this.classList.add("fas", "fa-edit", "edit-task");
             })
         })
-    })
+    });
+
+    var changeBgColor = document.querySelectorAll('.change-bgcolor');
+    var colors = [
+        "#FFFFFF",
+        "#FF8A47",
+        "#FC6170",
+        "#8CEEEE",
+        "#26BFBF",
+        "#FFD747"
+    ]
+
+    var bgColors = document.createElement("div");
+    bgColors.className = "bg-colors hidden";
+
+
+    changeBgColor.forEach(function (icon) {
+        icon.parentElement.prepend(bgColors);
+        icon.addEventListener("click", function () {
+            var thisElement = this.previousElementSibling;
+
+            colors.forEach(function(color) {
+                var bgIcon = document.createElement("span");
+                bgIcon.classList = "bgIconItem";
+                thisElement.appendChild(bgIcon);
+                bgIcon.style.backgroundColor = color;                
+            });
+
+            
+            if (thisElement.classList.contains("hidden")) {
+                thisElement.classList.remove("hidden");
+            } else {
+                thisElement.classList.add("hidden");
+            }
+            var bgIconItem = document.querySelectorAll(".bgIconItem");
+        
+
+
+            for (var i = 0; i < bgIconItem.length; i++) {
+                bgIconItem[i].addEventListener("click", function (itemColor) {
+                    itemColor = this.style.backgroundColor;
+                    this.closest("li.list-item").style.backgroundColor = itemColor;
+                });
+            }
+
+            
+        })
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
 };
 
 todoTitle.addEventListener('keyup', function (event) {
