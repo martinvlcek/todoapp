@@ -104,41 +104,87 @@ function addNewTask() {
 
     var bgColors = document.createElement("div");
     bgColors.className = "bg-colors hidden";
+    // bgColors.className = "bg-colors hidden";
 
 
-    changeBgColor.forEach(function (icon) {
+    for (var i = 0; i < changeBgColor.length; i++) {
+        var icon = changeBgColor[i];
         icon.parentElement.prepend(bgColors);
+    }
+    
+    
+    // icon.addEventListener("click", function (bgIcon) {
+        // var thisElement = this.previousElementSibling;
         icon.addEventListener("click", function () {
-            var thisElement = this.previousElementSibling;
-
-            colors.forEach(function(color) {
-                var bgIcon = document.createElement("span");
-                bgIcon.classList = "bgIconItem";
-                thisElement.appendChild(bgIcon);
-                bgIcon.style.backgroundColor = color;                
+                    var thisElement = this.previousElementSibling;
+        
+                    colors.forEach(function(color) {
+                        var bgIcon = document.createElement("span");
+                        bgIcon.classList = "bgIconItem";
+                        thisElement.appendChild(bgIcon);
+                        bgIcon.style.backgroundColor = color;                
+                    });
+                    if (thisElement.classList.contains("hidden")) {
+                            thisElement.classList.remove("hidden");
+                        } else {
+                            thisElement.classList.add("hidden");
+                        }
             });
+        // for (var x = 0; x < colors.length; x++) {
+        //     var icon = colors[x];
+        //     bgIcon = document.createElement("span");
+        //     bgIcon.className = "bgIconItem";
+        //     thisElement.appendChild(bgIcon);
+        //     bgIcon.style.backgroundColor = icon;
+        //     console.log(bgIcon);
+            
+        // }
+        // if (thisElement.classList.contains("hidden")) {
+        //     thisElement.classList.remove("hidden");
+        // } else {
+        //     thisElement.classList.add("hidden");
+        // }
+    // });
+
+
+    // changeBgColor.forEach(function (icon) {
+    //     icon.parentElement.prepend(bgColors);
+    //     icon.addEventListener("click", function () {
+    //         var thisElement = this.previousElementSibling;
+
+    //         colors.forEach(function(color) {
+    //             var bgIcon = document.createElement("span");
+    //             bgIcon.classList = "bgIconItem";
+    //             thisElement.appendChild(bgIcon);
+    //             bgIcon.style.backgroundColor = color;                
+    //         });
 
             
-            if (thisElement.classList.contains("hidden")) {
-                thisElement.classList.remove("hidden");
-            } else {
-                thisElement.classList.add("hidden");
-            }
-            var bgIconItem = document.querySelectorAll(".bgIconItem");
+            // if (thisElement.classList.contains("hidden")) {
+            //     thisElement.classList.remove("hidden");
+            // } else {
+            //     thisElement.classList.add("hidden");
+            // }
+
+
+
+
+
+            // var bgIconItem = document.querySelectorAll(".bgIconItem");
         
 
 
-            for (var i = 0; i < bgIconItem.length; i++) {
-                bgIconItem[i].addEventListener("click", function (itemColor) {
-                    itemColor = this.style.backgroundColor;
-                    this.closest("li.list-item").style.backgroundColor = itemColor;
-                });
-            }
+            // for (var i = 0; i < bgIconItem.length; i++) {
+            //     bgIconItem[i].addEventListener("click", function (itemColor) {
+            //         itemColor = this.style.backgroundColor;
+            //         this.closest("li.list-item").style.backgroundColor = itemColor;
+            //     });
+            // }
 
             
-        })
+    //     })
         
-    });
+    // });
 
 
 
