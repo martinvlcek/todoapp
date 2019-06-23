@@ -47,6 +47,7 @@ function createNewTask(task) {
     dateInfo.innerText = formatDate(new Date());
     dateInfo.className = 'task-date';
     textItem.className = 'list-content';
+    textItem.contentEditable = false;
     icons.className = 'action-icons';
     textItem.innerText = task;
     listItem.className = 'list-item';
@@ -65,80 +66,83 @@ function addNewTask() {
     todoList.appendChild(listItem);
     todoTitle.value = '';
     
-    var deleteTask = document.querySelectorAll('.delete-task');
+    var deleteTask = listItem.getElementsByClassName('delete-task')[0];
     
-    deleteTask.forEach(function (icon) {
-        icon.addEventListener("click", function() {
-			this.closest("li.list-item").classList.add("hidden");     
-        });
+    deleteTask.addEventListener("click", function () {
+        this.closest("li.list-item").classList.add("hidden");    
     });
+
+    // deleteTask.forEach(function (icon) {
+    //     icon.addEventListener("click", function() {
+	// 		this.closest("li.list-item").classList.add("hidden");     
+    //     });
+    // });
     
-    var editTask = document.querySelectorAll('.edit-task');
-    
-    editTask.forEach(function (icon) {
-        icon.addEventListener("click", function () {
-            var thisParent = this.parentElement.parentElement.previousElementSibling;
-            thisParent.contentEditable = true;
-            thisParent.style.backgroundColor = "#efefef";
-            this.classList.remove("fas", "fa-edit", "edit-task");
-            this.classList.add("fas", "fa-check", "fa-2x");
-            
-            this.addEventListener("click", function () {
+    var editTask = listItem.getElementsByClassName('edit-task')[0];
+
+    editTask.addEventListener("click", function () {
+        var thisParent = this.parentElement.parentElement.previousElementSibling;
+        switch (thisParent.contentEditable) {
+            case "false":
+                thisParent.contentEditable = true;
+                thisParent.style.backgroundColor = "#efefef";
+                this.classList.remove("fas", "fa-edit", "edit-task");
+                this.classList.add("fas", "fa-check", "fa-2x");
+                break;
+            case "true":
                 thisParent.contentEditable = false;
                 thisParent.style.backgroundColor = "#ffffff";
                 this.classList.remove("fas", "fa-check", "fa-2x");
                 this.classList.add("fas", "fa-edit", "edit-task");
-            })
-        })
+                break;
+        }        
     });
 
-    var changeBgColor = document.querySelectorAll('.change-bgcolor');
-    var colors = [
-        "#FFFFFF",
-        "#FF8A47",
-        "#FC6170",
-        "#8CEEEE",
-        "#26BFBF",
-        "#FFD747"
-    ]
+    // var changeBgColor = document.querySelectorAll('.change-bgcolor');
+    // var colors = [
+    //     "#FFFFFF",
+    //     "#FF8A47",
+    //     "#FC6170",
+    //     "#8CEEEE",
+    //     "#26BFBF",
+    //     "#FFD747"
+    // ]
 
-    var bgColors = document.createElement("div");
-    bgColors.className = "bg-colors hidden";
-
-
-    changeBgColor.forEach(function (icon) {
-        icon.parentElement.prepend(bgColors);
-        icon.addEventListener("click", function () {
-            var thisElement = this.previousElementSibling;
-
-            colors.forEach(function(color) {
-                var bgIcon = document.createElement("span");
-                bgIcon.classList = "bgIconItem";
-                thisElement.appendChild(bgIcon);
-                bgIcon.style.backgroundColor = color;                
-            });
-
-            
-            if (thisElement.classList.contains("hidden")) {
-                thisElement.classList.remove("hidden");
-            } else {
-                thisElement.classList.add("hidden");
-            }
-            var bgIconItem = document.querySelectorAll(".bgIconItem");
-        
+    // var bgColors = document.createElement("div");
+    // bgColors.className = "bg-colors hidden";
 
 
-            for (var i = 0; i < bgIconItem.length; i++) {
-                bgIconItem[i].addEventListener("click", function (itemColor) {
-                    itemColor = this.style.backgroundColor;
-                    this.closest("li.list-item").style.backgroundColor = itemColor;
-                });
-            }
+    // changeBgColor.forEach(function (icon) {
+    //     icon.parentElement.prepend(bgColors);
+    //     icon.addEventListener("click", function () {
+    //         var thisElement = this.previousElementSibling;
+
+    //         colors.forEach(function(color) {
+    //             var bgIcon = document.createElement("span");
+    //             bgIcon.classList = "bgIconItem";
+    //             thisElement.appendChild(bgIcon);
+    //             bgIcon.style.backgroundColor = color;                
+    //         });
 
             
-        })
+    //         if (thisElement.classList.contains("hidden")) {
+    //             thisElement.classList.remove("hidden");
+    //         } else {
+    //             thisElement.classList.add("hidden");
+    //         }
+    //         var bgIconItem = document.querySelectorAll(".bgIconItem");
+
+    //         for (var i = 0; i < bgIconItem.length; i++) {
+    //             bgIconItem[i].addEventListener("click", function (itemColor) {
+    //                 itemColor = this.style.backgroundColor;
+    //                 this.closest("li.list-item").style.backgroundColor = itemColor;
+    //             });
+    //         }
+
+            
+    //     })
         
-    });
+    // });
 
 
 
