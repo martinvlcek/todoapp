@@ -135,6 +135,11 @@ function addNewTask() {
                 this.closest("li.list-item").style.backgroundColor = itemColor;
             });
         }
+
+        bgColors.addEventListener("mouseleave", function() {
+            this.classList.add("hidden")
+        });
+
     });
 
 
