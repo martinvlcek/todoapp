@@ -86,8 +86,8 @@ input.title-input:focus {
 
 .todo-list .list-item .bg-colors {
     width: 105px;
-    height: auto;
-    /* height: 100px; */
+    /* height: auto; */
+    height: 100px;
     background-color: #ffffff;
     position: absolute;
     bottom: 30px;
