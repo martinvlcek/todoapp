@@ -98,55 +98,44 @@ function addNewTask() {
         }        
     });
 
-    // var changeBgColor = document.querySelectorAll('.change-bgcolor');
-    // var colors = [
-    //     "#FFFFFF",
-    //     "#FF8A47",
-    //     "#FC6170",
-    //     "#8CEEEE",
-    //     "#26BFBF",
-    //     "#FFD747"
-    // ]
+    var changeBgColor = listItem.getElementsByClassName('change-bgcolor')[0];
+    var colors = [
+        "#FFFFFF",
+        "#B6B5B8",
+        "#FF8A47",
+        "#FC6170",
+        "#8CEEEE",
+        "#26BFBF",
+        "#FFD747",
+        "#C0C480",
+        "#C06C84"
+    ]
 
-    // var bgColors = document.createElement("div");
-    // bgColors.className = "bg-colors hidden";
+    // console.log(changeBgColor);
+    // console.log(colors);
+    
+    var bgColors = document.createElement("div");
+    bgColors.className = "bg-colors hidden";
 
+    colors.forEach(function(color) {
+        changeBgColor.parentElement.prepend(bgColors);
+        var bgIcon = document.createElement("span");
+        bgIcon.classList = "bgIconItem";
+        changeBgColor.previousElementSibling.appendChild(bgIcon);
+        bgIcon.style.backgroundColor = color;
+    });
 
-    // changeBgColor.forEach(function (icon) {
-    //     icon.parentElement.prepend(bgColors);
-    //     icon.addEventListener("click", function () {
-    //         var thisElement = this.previousElementSibling;
+    changeBgColor.addEventListener("click", function() {
+        this.previousElementSibling.classList.toggle("hidden");
 
-    //         colors.forEach(function(color) {
-    //             var bgIcon = document.createElement("span");
-    //             bgIcon.classList = "bgIconItem";
-    //             thisElement.appendChild(bgIcon);
-    //             bgIcon.style.backgroundColor = color;                
-    //         });
-
-            
-    //         if (thisElement.classList.contains("hidden")) {
-    //             thisElement.classList.remove("hidden");
-    //         } else {
-    //             thisElement.classList.add("hidden");
-    //         }
-    //         var bgIconItem = document.querySelectorAll(".bgIconItem");
-
-    //         for (var i = 0; i < bgIconItem.length; i++) {
-    //             bgIconItem[i].addEventListener("click", function (itemColor) {
-    //                 itemColor = this.style.backgroundColor;
-    //                 this.closest("li.list-item").style.backgroundColor = itemColor;
-    //             });
-    //         }
-
-            
-    //     })
-        
-    // });
-
-
-
-
+        var bgIconItem = document.querySelectorAll(".bgIconItem");
+        for (var i = 0; i < bgIconItem.length; i++) {
+            bgIconItem[i].addEventListener("click", function (itemColor) {
+                itemColor = this.style.backgroundColor;
+                this.closest("li.list-item").style.backgroundColor = itemColor;
+            });
+        }
+    });
 
 
 
