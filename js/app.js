@@ -91,7 +91,7 @@ function addNewTask() {
                 break;
             case "true":
                 thisParent.contentEditable = false;
-                thisParent.style.backgroundColor = "#ffffff";
+                thisParent.style.backgroundColor = listItem.style.backgroundColor;
                 this.classList.remove("fas", "fa-check", "fa-2x");
                 this.classList.add("fas", "fa-edit", "edit-task");
                 break;
