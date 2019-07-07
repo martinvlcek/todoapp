@@ -53,7 +53,8 @@ input.title-input:focus {
 .todo-list {
     list-style-type: none;
     padding: 0;
-    display: -webkit-box;
+    margin: 0 auto;
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
@@ -65,7 +66,7 @@ input.title-input:focus {
             align-items: flex-start;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
-            justify-content: flex-start;
+            justify-content: flex-start; */
 }
 
 .todo-list .list-item {
@@ -79,9 +80,9 @@ input.title-input:focus {
     /* min-heiglist-coht: 100px; */
     width: 200px;
     position: relative;
-    margin: 5px;
-    -webkit-transition: all .25s;
-    transition: all .25s;
+    /* margin: 5px; */
+    /* -webkit-transition: all .25s;
+    transition: all .25s; */
 }
 
 .todo-list .list-item .bg-colors {

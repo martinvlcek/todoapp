@@ -50,7 +50,7 @@ function createNewTask(task) {
     textItem.contentEditable = false;
     icons.className = 'action-icons';
     textItem.innerText = task;
-    listItem.className = 'list-item';
+    listItem.className = 'list-item grid-item';
     // textItem.appendChild(icons);
     listItem.appendChild(textItem);
     // listItem.appendChild(saveEditedTask);
@@ -137,7 +137,7 @@ function addNewTask() {
         }
 
         bgColors.addEventListener("mouseleave", function() {
-            this.classList.add("hidden")
+            this.classList.add("hidden");
         });
 
     });
@@ -147,6 +147,7 @@ function addNewTask() {
 
 
 
+    addMasonry();
 
 };
 
@@ -157,5 +158,19 @@ todoTitle.addEventListener('keyup', function (event) {
 });
 
 
+function addMasonry() { 
+    var elem = document.querySelector('.grid');
+    
+    if (elem) { 
+        var msnry = new Masonry(elem, {
+            itemSelector: '.grid-item',
+            gutter: 10,
+            horizontalOrder: true,
+            fitWidth: true,
+            transitionDuration: '0.5s'
+        }
+    )};
+
+}
 
 
