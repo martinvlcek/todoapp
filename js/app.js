@@ -1,3 +1,8 @@
+// TODO: add animations (animate.css) for adding & removing tasks
+// TODO: bug - broken masonry layout if removing first task
+// TODO: change time format for minutes
+// TODO: 
+
 'use strict';
 
 var todoTitle = document.querySelector('.title-input');
@@ -31,7 +36,7 @@ function createNewTask(task) {
         '<i class="fas fa-tag"></i>',
         '<i class="fas fa-palette change-bgcolor"></i>',
         '<i class="fas fa-edit edit-task"></i>',
-        '<i class="fas fa-check-square"></i>',
+        '<i class="fas fa-check-square finish-task"></i>',
         '<i class="fas fa-times-circle delete-task"></i>'
     ]
     
@@ -69,14 +74,9 @@ function addNewTask() {
     var deleteTask = listItem.getElementsByClassName('delete-task')[0];
     
     deleteTask.addEventListener("click", function () {
-        this.closest("li.list-item").classList.add("hidden");    
+        this.closest("li.list-item").classList.add("hidden");  
+        addMasonry();
     });
-
-    // deleteTask.forEach(function (icon) {
-    //     icon.addEventListener("click", function() {
-	// 		this.closest("li.list-item").classList.add("hidden");     
-    //     });
-    // });
     
     var editTask = listItem.getElementsByClassName('edit-task')[0];
 
@@ -110,9 +110,6 @@ function addNewTask() {
         "#C0C480",
         "#C06C84"
     ]
-
-    // console.log(changeBgColor);
-    // console.log(colors);
     
     var bgColors = document.createElement("div");
     bgColors.className = "bg-colors hidden";
@@ -144,8 +141,26 @@ function addNewTask() {
 
 
 
+    // * FINISH TASK
+    var finishTask = listItem.getElementsByClassName('finish-task')[0];
 
+    finishTask.addEventListener("click", function () {
+        this.closest("li.list-item").classList.add("task-done");
+        this.parentElement.parentElement.style.pointerEvents = "none";
+        
+    });
 
+    var unfinishTask = listItem.getElementsByClassName("list-content")[0];
+    var actionIcons = listItem.getElementsByClassName("action-icons")[0];
+
+    unfinishTask.addEventListener("click", function () {
+        
+        if (this.parentElement.classList.contains("task-done")) {
+            this.parentElement.classList.remove("task-done");
+            actionIcons.style.pointerEvents = "auto";            
+        }
+        
+    });
 
     addMasonry();
 
@@ -157,7 +172,7 @@ todoTitle.addEventListener('keyup', function (event) {
     }
 });
 
-
+// * CREATE MASONRY LAYOUT
 function addMasonry() { 
     var elem = document.querySelector('.grid');
     

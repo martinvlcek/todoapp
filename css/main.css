@@ -74,15 +74,14 @@ input.title-input:focus {
     padding-bottom: 5px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #202124;
     margin-bottom: 10px;
     /* min-heiglist-coht: 100px; */
     width: 200px;
     position: relative;
-    /* margin: 5px; */
-    /* -webkit-transition: all .25s;
-    transition: all .25s; */
+    -webkit-transition: -webkit-box-shadow .2s ease-in-out;
+    transition: box-shadow .2s ease-in-out;
 }
 
 .todo-list .list-item .bg-colors {
@@ -151,7 +150,7 @@ input.title-input:focus {
             -ms-flex-align: center;
                 align-items: center;
     margin: 10px 0;
-    /* opacity: 0; */
+    opacity: 0;
     -webkit-transition: all .25s;
     transition: all .25s;
 }
@@ -167,4 +166,11 @@ input.title-input:focus {
 
 .fas.fa-check {
     color: green;
+}
+
+.task-done {
+    -webkit-transform: scale(.95);
+            transform: scale(.95);
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
 }
