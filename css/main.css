@@ -150,7 +150,7 @@ input.title-input:focus {
             -ms-flex-align: center;
                 align-items: center;
     margin: 10px 0;
-    opacity: 0;
+    /* opacity: 0; */
     -webkit-transition: all .25s;
     transition: all .25s;
 }

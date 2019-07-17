@@ -1,7 +1,10 @@
 // TODO: add animations (animate.css) for adding & removing tasks
 // TODO: bug - broken masonry layout if removing first task
 // TODO: change time format for minutes
-// TODO: 
+// TODO: create function for adding labels to the tasks
+
+//! DONE:
+//// update deleting element - use remove(), not display: none;
 
 'use strict';
 
@@ -74,7 +77,7 @@ function addNewTask() {
     var deleteTask = listItem.getElementsByClassName('delete-task')[0];
     
     deleteTask.addEventListener("click", function () {
-        this.closest("li.list-item").classList.add("hidden");  
+        this.closest("li.list-item").remove();  
         addMasonry();
     });
     
